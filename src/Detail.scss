@@ -1,0 +1,40 @@
+$main_color : #ff0000;
+
+.red {
+    color: $main_color;
+}
+
+.wow-enter {
+    opacity: 0;
+}
+
+.wow-enter-active {
+    opacity: 1;
+    transition: all 500ms;
+}
+
+@mixin sample() {
+    background: #eeeeee;
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.my-alert {
+    @include sample()
+}
+
+.my-alert2 {
+    @extend .my-alert;
+    background: #ffe591;
+}
+
+.my-alert p {
+    margin-bottom: 0;
+}
+
+.loading {
+    @extend .my-alert2;
+}
