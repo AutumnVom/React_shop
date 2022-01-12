@@ -24,7 +24,6 @@ const Title = styled.h4`
 function Detail(props) {
 
     const [alert, setAlert] = useState(true);
-    const [inputData, setInputData] = useState('');
 
     const [tab, setTab] = useState(0);
     const [aniswitch, setAniswitch] = useState(false);
@@ -41,7 +40,7 @@ function Detail(props) {
     const findPd = props.shoes.find(function(shoes) {
         return shoes.id == id
     });
-    // const findPd = props.shoes.find( x => x.id == id);
+        // const findPd = props.shoes.find( x => x.id == id);
     const history = useHistory();
 
     const new재고= () => {
@@ -54,9 +53,6 @@ function Detail(props) {
         <Box>
             <Title color="red">상세페이지</Title>
         </Box>
-
-        {/* {inputData}
-        <input onChange={(e)=>{ setInputData(e.target.value) }}/> */}
 
         {
           alert === true
@@ -133,7 +129,7 @@ function Detail(props) {
   }
 
   function state를props화(state){
-    console.log(state);
+    // console.log(state);
     return {
       state : state.reducer, //state라는 이름의 props로 바꿔주세요
       alertOpen : state.reducer2

@@ -21,36 +21,42 @@ function reducer2(state = alertOpen, action){
 }
 
 const 초기값 = [
-  { id: 0, name: '멋진신발', quan: 2 },
-  { id: 1, name: '펌프스', quan: 1 },
-  { id: 2, name: '스니커즈', quan: 1 }
+  { id: 0, name: 'White and Black', quan: 1 },
+  { id: 1, name: 'Red Knit', quan: 1 },
 ];
 
 function reducer(state = 초기값, action){
   let copy;
+  const payload = action.payload;
 
   switch(action.type) {
     case '수량증가':
       copy = [...state];
-      copy[action.payload].quan++;
-      break;
-    case '수량감소':
-      copy = [...state];
-      copy[action.payload].quan--;
+      copy[payload.id].quan++;
       break;
 
+    case '수량감소':
+      state[payload.id].quan == 1
+      ? alert('최소 수량은 1입니다.')
+      : copy = [...state];
+        copy[payload.id].quan--;
+        break;
+
     case '항목추가':
-      const found = state.findIndex((a)=>{ return a.id === action.payload.id });
-      if ( found >= 0) {
+      const found = state.findIndex((a)=>{ return a.id === payload.id });
+      console.log(found);
+      if ( found >= 0 ) {
         copy = [...state];
         copy[found].quan++;
-        return
       } else {
         copy = [...state];
-        copy.push(action.payload);
-        return
+        copy.push({
+          ...payload,
+          id: state.length
+        });
       }
-      
+      break;
+
     default:
       copy = state;
       break;
