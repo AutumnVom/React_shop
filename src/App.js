@@ -46,11 +46,11 @@ function App() {
 
             <재고context.Provider value={재고}>
 
-              <div className="row">
+              <div className="row" style={{cursor: "pointer"}}>
                 {
-                  shoes.map( (value, index) => {
+                  shoes.map( (v, i) => {
                     return (
-                      <Card key={index} shoes={shoes[index]} index={index}/>
+                      <Card key={i} shoes={shoes[i]} i={i}/>
                     )
                   })
                 }
@@ -112,13 +112,14 @@ function Card(props) {
   const 재고 = useContext(재고context);
   const history = useHistory();
 
-  const { title, content, price } = props.shoes;
+  const { title, content, price, id } = props.shoes;
+
   return (
-    <div className="col-md-4" onClick={()=>{ history.push('/detail/' + props.shoes.id) }}>
-      <img src={'https://codingapple1.github.io/shop/shoes' + (props.index + 1) + '.jpg'} width="100%" />
+    <div className="col-md-4" onClick={()=>{ history.push('/detail/' + id) }}>
+      <img src={'https://codingapple1.github.io/shop/shoes' + (props.i + 1) + '.jpg'} width="100%" />
       <h4>{ title }</h4>
       <p>{ content } & { price } 원</p>
-      {재고[props.index]}
+      {재고[props.i]}
       {/* <Test/> */}
     </div>
   )

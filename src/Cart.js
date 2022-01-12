@@ -4,7 +4,7 @@ import { connect, useDispatch, useSelector } from 'react-redux';
 
 function Cart(props) {
 
-  const state = useSelector((state) => state.reducer);
+  const state = useSelector((state) => state);
   console.log(state);
   const dispatch = useDispatch();
 
@@ -22,10 +22,10 @@ function Cart(props) {
         <tbody>
 
           {
-            state.map((a, i)=>{
+            state.reducer.map((a, i)=>{
               return (
                 <tr key={i}>
-                  <td>{ i }</td>
+                  <td>{ a.id }</td>
                   <td>{ a.name }</td>
                   <td>{ a.quan }</td>
                   <td>
@@ -41,10 +41,10 @@ function Cart(props) {
       </Table>
 
       {
-        props.alertOpen === true
+        state.reducer2 === true
         ? <div className="my-alert2">
             <p>지금 구매하시면 신규 할인 20%</p>
-            <buttom onClick={ ()=>{ props.dispatch({type: 'alert닫기'}) } }>닫기</buttom>
+            <buttom onClick={ ()=>{ dispatch({type: 'alert닫기'}) } }>닫기</buttom>
           </div>
         : null
       }

@@ -14,8 +14,6 @@ const Box = styled.div`
     padding: 20px;
 `;
 
-
-
 const Title = styled.h4`
     font-size: 25px;
     font-weight: bold;
@@ -57,8 +55,8 @@ function Detail(props) {
             <Title color="red">상세페이지</Title>
         </Box>
 
-        {inputData}
-        <input onChange={(e)=>{ setInputData(e.target.value) }}/>
+        {/* {inputData}
+        <input onChange={(e)=>{ setInputData(e.target.value) }}/> */}
 
         {
           alert === true
@@ -70,7 +68,7 @@ function Detail(props) {
         
         <div className="row">
           <div className="col-md-6">
-            <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%" />
+            <img src={'https://codingapple1.github.io/shop/shoes' + (props.shoes[id].id + 1) + '.jpg'} width="100%" />
           </div>
           <div className="col-md-6 mt-4">
             <h4 className="pt-5">{ findPd.title }</h4>

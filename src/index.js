@@ -11,8 +11,8 @@ import { combineReducers, createStore } from 'redux';
 
 const alertOpen = true;
 
-function reducer2(state = alertOpen, 액션){
-  switch(액션.type) {
+function reducer2(state = alertOpen, action){
+  switch(action.type) {
     case 'alert닫기':
       state = false;
       break;
@@ -26,26 +26,29 @@ const 초기값 = [
   { id: 2, name: '스니커즈', quan: 1 }
 ];
 
-function reducer(state = 초기값, 액션){
+function reducer(state = 초기값, action){
   let copy;
-  switch(액션.type) {
+
+  switch(action.type) {
     case '수량증가':
       copy = [...state];
-      copy[액션.payload].quan++;
+      copy[action.payload].quan++;
       break;
     case '수량감소':
       copy = [...state];
-      copy[액션.payload].quan--;
+      copy[action.payload].quan--;
       break;
+
     case '항목추가':
-      let found = state.findIndex((a)=>{ return a.id === 액션.payload.id });//조건식이 맞으면 몇번째 있는지 index를 뱉어낸다
-      if ( found >= 0 ){
+      const found = state.findIndex((a)=>{ return a.id === action.payload.id });
+      if ( found >= 0) {
         copy = [...state];
         copy[found].quan++;
+        return
       } else {
         copy = [...state];
-        copy.push(액션.payload);
-        break;
+        copy.push(action.payload);
+        return
       }
       
     default:
